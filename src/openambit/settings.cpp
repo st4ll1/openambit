@@ -21,10 +21,14 @@
  */
 #include "settings.h"
 #include <QString>
+#include <QStandardPaths>
 
 Settings::Settings(QObject *parent) :
 #ifdef Q_OS_LINUX
-    QSettings(QString(getenv("HOME")) + "/.openambit/openambit.conf", NativeFormat, parent)
+    QSettings(
+			QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+				+ "/openambit.conf"
+			, NativeFormat, parent)
 #else
     QSettings(parent)
 #endif

@@ -733,9 +733,12 @@ QNetworkReply *MovesCount::syncPUT(QString path, QString additionalHeaders, QByt
 
 #ifdef QT_DEBUG
 #include <QDir>
+#include <QStandardPaths>
 void MovesCount::writeJsonToStorage(QString filename, QByteArray &data)
 {
-    QString storagePath = QString(getenv("HOME")) + "/.openambit/movescount";
+    QString storagePath = QString(
+			QStandardPaths::writableLocaiton(QStandardPaths::DataLocation)
+			 + "/movescount";
     if (QDir().mkpath(storagePath)) {
         QFile logfile(storagePath + "/" + filename);
         logfile.open(QIODevice::WriteOnly | QIODevice::Truncate);

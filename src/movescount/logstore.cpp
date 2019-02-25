@@ -25,6 +25,7 @@
 #include <QStringList>
 #include <QDir>
 #include <QRegExp>
+#include <QStandardPaths>
 
 #include <QDebug>
 
@@ -125,7 +126,7 @@ static sample_swimming_style_name_t sampleSwimmingStyleNames[] = {
 LogStore::LogStore(QObject *parent) :
     QObject(parent)
 {
-    storagePath = QString(getenv("HOME")) + "/.openambit";
+    storagePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
 LogEntry *LogStore::store(const DeviceInfo& deviceInfo, ambit_personal_settings_t *personalSettings, ambit_log_entry_t *logEntry)

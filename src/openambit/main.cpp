@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 {
     // Set application settings
     QCoreApplication::setApplicationVersion(APP_VERSION);
-    QCoreApplication::setOrganizationName("Openambit");
+    QCoreApplication::setOrganizationName("OpenambitProject");
     QCoreApplication::setApplicationName("Openambit");
 
     for(int x = 1; x < argc; ++x) {

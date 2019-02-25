@@ -22,6 +22,7 @@
 #include "movescountxml.h"
 #include <QDir>
 #include <QFile>
+#include <QStandardPaths>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -164,7 +165,9 @@ static typename_lookup_entry_t sampleActivityNames[] = {
 MovesCountXML::MovesCountXML(QObject *parent) :
     QObject(parent)
 {
-    storagePath = QString(getenv("HOME")) + "/.openambit/movescount";
+    storagePath =
+		QStandardPaths::writableLocation(QStandardPaths::DataLocation)
+		+ "/movescount";
     QDir().mkpath(storagePath);
 }
 
